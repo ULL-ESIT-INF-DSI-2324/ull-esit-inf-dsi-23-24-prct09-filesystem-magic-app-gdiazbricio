@@ -6,4 +6,4 @@ describe("exercise 1 tests", () => {
   it("must add two numbers", () => {
     expect(add(1, 2)).to.be.equal(3)
   })
-})
+});

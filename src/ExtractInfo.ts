@@ -10,7 +10,7 @@ export type Solution = [(string | undefined)[], (string | undefined)[]];
  */
 export abstract class ExtractInfo {
   public solution_: Solution;
-  constructor() {
+  constructor(protected filepath: string) {
     this.solution_ = [[],[]];
   }
   /**
@@ -19,14 +19,14 @@ export abstract class ExtractInfo {
    */
   public run(): void {
     this.beforeProcessing();
-    this.solution_ = this.process();
+    this.solution_ = this.process(this.filepath);
     this.afterProcessing();
   }
 
   /**
    * Abstract method that reads and returns a solution.
    */
-  protected abstract process(): Solution;
+  protected abstract process(filepath: string): Solution;
 
   /**
    * Hook methods (non mandatory) to be used before and after processing if needed.

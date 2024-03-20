@@ -18,13 +18,13 @@ interface myJSONStructure {
  * Child class from ExtractInfo, implements the process method in a JSON context.
  */
 export class ExtractInfoInJSON extends ExtractInfo {
-  constructor(){super()}
+  constructor(protected filepath: string){super(filepath)}
     /**
    * Process a JSON file.
    * @returns a tuple containing information about weights and profits.
    */
-  protected process(): Solution {
-    const myData = readFileSync("bag.json");
+  protected process(filepath: string): Solution {
+    const myData = readFileSync(filepath);
     const myDataInJSON: myJSONStructure = JSON.parse(myData.toString());
     const myWeights: string[] = [];
     const myProfits: string[] = [];

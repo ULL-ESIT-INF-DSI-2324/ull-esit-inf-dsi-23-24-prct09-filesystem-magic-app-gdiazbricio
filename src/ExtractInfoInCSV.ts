@@ -5,13 +5,13 @@ import { readFileSync } from 'fs'
  * Child class from ExtractInfo, implements the process method in a CSV context.
  */
 export class ExtractInfoInCSV extends ExtractInfo {
-  constructor(){super()}
+  constructor(protected filepath: string){super(filepath)}
   /**
    * Process a CSV file.
    * @returns a tuple containing information about weights and profits.
    */
-  protected process(): Solution {
-    const myData = readFileSync("bag.csv");
+  protected process(filepath: string): Solution {
+    const myData = readFileSync(filepath);
     const myDataInString = myData.toString();
     const myDataInVector: string[] = myDataInString.split("\n");
     const myWeights = [];

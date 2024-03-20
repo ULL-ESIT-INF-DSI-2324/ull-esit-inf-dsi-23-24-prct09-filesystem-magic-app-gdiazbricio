@@ -1,0 +1,26 @@
+{
+  "capacidad": "8",
+  "numElementos": "4",
+  "elementos": [
+    {
+      "numElemento": "1",
+      "peso": "3",
+      "beneficio": "4"
+    },
+    {
+      "numElemento": "2",
+      "peso": "1",
+      "beneficio": "2"
+    },
+    {
+      "numElemento": "3",
+      "peso": "2",
+      "beneficio": "2"
+    },
+    {
+      "numElemento": "1",
+      "peso": "2",
+      "beneficio": "5"
+    }
+  ]
+}

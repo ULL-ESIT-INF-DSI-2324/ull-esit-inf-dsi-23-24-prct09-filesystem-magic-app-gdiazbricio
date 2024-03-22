@@ -1,9 +1,9 @@
 import "mocha";
 import { expect } from "chai";
-import { Solution } from "../src/ExtractInfo.js";
-import { ExtractInfo } from "../src/ExtractInfo.js";
-import { ExtractInfoInCSV } from "../src/ExtractInfoInCSV.js"
-import { ExtractInfoInJSON } from "../src/ExtractInfoInJSON.js";
+import { Solution } from "../src/ejercicio-modi/ExtractInfo.js";
+import { ExtractInfo } from "../src/ejercicio-modi/ExtractInfo.js";
+import { ExtractInfoInCSV } from "../src/ejercicio-modi/ExtractInfoInCSV.js"
+import { ExtractInfoInJSON } from "../src/ejercicio-modi/ExtractInfoInJSON.js";
 
 
 describe("exercise 1 tests", () => {

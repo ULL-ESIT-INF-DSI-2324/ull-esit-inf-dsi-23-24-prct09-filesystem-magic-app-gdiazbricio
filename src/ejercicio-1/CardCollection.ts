@@ -5,7 +5,10 @@ export class CardCollection {
   public collection: Card[];
   constructor(private user: string){
     this.collection = [];
-    if (!existsSync(this.user)) mkdirSync(`${this.user}`, );
+    if (!existsSync(this.user)) {
+      mkdirSync(`${this.user}`, );
+      writeFileSync(`${this.user}/collection.json`, "[]", {flag: "w"});
+    }
   }
 
   getUser(): string {

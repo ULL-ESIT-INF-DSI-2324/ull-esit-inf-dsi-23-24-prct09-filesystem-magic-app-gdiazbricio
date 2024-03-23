@@ -1,20 +1,20 @@
 import { CardCollection } from "./CardCollection.js";
-import { Card } from "./Card.js";
+import chalk from "chalk";
 
 export class DeleteCard {
   constructor(private Cards: CardCollection){}
 
   // Igual en vez de una card seria mejor un identificador nada mas.
-  delete(toDelete: Card): void {
+  delete(toDeleteId: number): void {
     const found = this.Cards.collection.find((card) => {
-      card.id === toDelete.id;
+      return card.id === toDeleteId;
     });
     if (found) {
       this.Cards.collection = this.Cards.collection.filter((card) => {
-        card.id !== toDelete.id;
+        card.id !== toDeleteId;
       });
-      console.log("Se ha eliminado la carta ..."); // Añadir colores y template string. 
+      console.log(chalk.green("Se ha eliminado la carta " + toDeleteId)); 
     }
-    else console.log("No se ha encontrado la carta a eliminar"); // Poner colores
+    else console.log(chalk.red("No se ha encontrado la carta a eliminar"));
   }
 }

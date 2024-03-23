@@ -1,17 +1,18 @@
 import { CardCollection } from "./CardCollection.js";
 import { Card } from "./Card.js";
+import chalk from "chalk";
 
 export class ModifyCard {
   constructor(private Cards: CardCollection){};
 
   modify(toModify: Card): void {
     const found = this.Cards.collection.findIndex((card) => {
-      card.id === toModify.id;
+      return card.id === toModify.id;
     });
     if (found >= 0) {
       this.Cards.collection[0] = toModify;
-      console.log("se ha modificado la carta ...") // Poner colores y template string.
+      console.log(chalk.green("se ha modificado la carta " + toModify.id));
     }
-    else console.log("No se ha encontrado la carta a modificar"); // Poner colores.
+    else console.log(chalk.red("No se ha encontrado la carta a modificar"));
   }
 }

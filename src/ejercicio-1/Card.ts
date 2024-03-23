@@ -1,4 +1,4 @@
-export enum colors {
+export enum Colors {
   White,
   Blue,
   Black,
@@ -8,7 +8,9 @@ export enum colors {
   Multicolor
 }
 
-export enum typeLines {
+export const Correspondencies = ["#ffffff", "0000ff", "000000", "ff00000", "00ff00", "ffffff", "ffffff"];
+
+export enum TypeLines {
   Ground,
   Creature,
   Enchanting,
@@ -18,7 +20,7 @@ export enum typeLines {
   Planeswalker
 }
 
-export enum oddities {
+export enum Oddities {
   Common,
   Unfrecuent,
   Mithic
@@ -28,9 +30,9 @@ export interface Card {
   id: number,
   name: string,
   mana: number,
-  color: colors,
-  typeLine: typeLines,
-  oddity: oddities,
+  color: Colors,
+  typeLine: TypeLines,
+  oddity: Oddities,
   rules: string,
   strength?: number,
   endurance?: number,
@@ -39,12 +41,12 @@ export interface Card {
 }
 
 export const counterspell: Card = {
-  id: 2,
+  id: 3,
   name: "Counterspell",
   mana: 2,
-  color: colors.Blue,
-  typeLine: typeLines.Instant,
-  oddity: oddities.Common,
+  color: Colors.Blue,
+  typeLine: TypeLines.Instant,
+  oddity: Oddities.Common,
   rules: "Counter target spell.",
   marketValue: 5 // Solo un valor de mercado imaginario
 };
@@ -53,9 +55,9 @@ export const llanowarElves: Card = {
   id: 3,
   name: "Llanowar Elves",
   mana: 1,
-  color: colors.Green,
-  typeLine: typeLines.Creature,
-  oddity: oddities.Common,
+  color: Colors.Green,
+  typeLine: TypeLines.Creature,
+  oddity: Oddities.Common,
   rules: "Tap: Add {G}.",
   strength: 1,
   endurance: 1,

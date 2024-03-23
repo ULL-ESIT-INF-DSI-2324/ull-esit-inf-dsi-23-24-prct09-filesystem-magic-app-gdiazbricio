@@ -11,7 +11,7 @@ export class DeleteCard {
     });
     if (found) {
       this.Cards.collection = this.Cards.collection.filter((card) => {
-        card.id !== toDeleteId;
+        return card.id !== toDeleteId;
       });
       console.log(chalk.green("Se ha eliminado la carta " + toDeleteId)); 
     }

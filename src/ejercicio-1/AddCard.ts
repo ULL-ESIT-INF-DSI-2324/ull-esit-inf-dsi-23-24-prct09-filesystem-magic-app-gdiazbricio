@@ -12,4 +12,3 @@ export class AddCard {
     else this.Cards.collection.push(newCard); 
   }
 }
-

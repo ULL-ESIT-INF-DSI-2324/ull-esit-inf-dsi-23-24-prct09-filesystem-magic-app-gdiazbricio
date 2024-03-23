@@ -10,7 +10,7 @@ export class ModifyCard {
       return card.id === toModify.id;
     });
     if (found >= 0) {
-      this.Cards.collection[0] = toModify;
+      this.Cards.collection[found] = toModify;
       console.log(chalk.green("se ha modificado la carta " + toModify.id));
     }
     else console.log(chalk.red("No se ha encontrado la carta a modificar"));

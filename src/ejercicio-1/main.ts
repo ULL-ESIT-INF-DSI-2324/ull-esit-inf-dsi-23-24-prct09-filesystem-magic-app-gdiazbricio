@@ -87,7 +87,6 @@ yargs(hideBin(process.argv))
       demandOption: true
     },
   }, (argv) => {
-    // Buscar primero si se encuentra el fichero, si se encuentra, entonces parsear la info, pero va a estar rarete.
     const myCollection = new CardCollection(argv.user);
     if (existsSync(argv.user)) {
       const data = readFileSync(`${argv.user}/collection.json`);

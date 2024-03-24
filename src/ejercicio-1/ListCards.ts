@@ -10,14 +10,16 @@ export class ListCards {
    * Creates an instance of ListCards.
    * @param Cards The collection of cards to be listed.
    */
-  constructor(private Cards: CardCollection){}
+  constructor(private Cards: CardCollection) {}
 
   /**
    * Lists all the cards in the collection with their details.
    */
   list(): void {
     this.Cards.collection.forEach((card) => {
-      console.log(`ID: ${card.id}, Nombre: ${card.name}, Mana: ${card.mana}, Color: ${chalk.hex(Correspondencies[card.color])(Colors[card.color])}, TypeLine: ${TypeLines[card.typeLine]}, Rareza: ${Oddities[card.oddity]}, Reglas: ${card.rules}, Fuerza: ${card.strength ?? ""}, Resistencia: ${card.endurance ?? ""}, Lealtad: ${card.loyalty ?? ""}, Valor de mercado: ${card.marketValue}`);
-    })
+      console.log(
+        `ID: ${card.id}, Nombre: ${card.name}, Mana: ${card.mana}, Color: ${chalk.hex(Correspondencies[card.color])(Colors[card.color])}, TypeLine: ${TypeLines[card.typeLine]}, Rareza: ${Oddities[card.oddity]}, Reglas: ${card.rules}, Fuerza: ${card.strength ?? ""}, Resistencia: ${card.endurance ?? ""}, Lealtad: ${card.loyalty ?? ""}, Valor de mercado: ${card.marketValue}`,
+      );
+    });
   }
 }

@@ -8,7 +8,7 @@ export class AddCard {
     const found = this.Cards.collection.find((card) => {
       return card.id === newCard.id;
     });
-    if (found) console.log(chalk.red("Ya está añadida"));
+    if (found) console.log(chalk.red("Ya está añadida en la colección de", this.Cards.getUser()));
     else this.Cards.collection.push(newCard); 
   }
 }

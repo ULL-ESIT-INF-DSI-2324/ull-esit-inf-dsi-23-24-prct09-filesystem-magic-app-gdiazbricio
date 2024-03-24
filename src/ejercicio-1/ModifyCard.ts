@@ -11,7 +11,7 @@ export class ModifyCard {
     });
     if (found >= 0) {
       this.Cards.collection[found] = toModify;
-      console.log(chalk.green("se ha modificado la carta " + toModify.id));
+      console.log(chalk.green("se ha modificado la carta " + toModify.id + " de la colección de", this.Cards.getUser()));
     }
     else console.log(chalk.red("No se ha encontrado la carta a modificar"));
   }

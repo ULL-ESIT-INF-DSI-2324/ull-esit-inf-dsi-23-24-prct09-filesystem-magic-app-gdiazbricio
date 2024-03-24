@@ -4,7 +4,6 @@ import chalk from "chalk";
 export class DeleteCard {
   constructor(private Cards: CardCollection){}
 
-  // Igual en vez de una card seria mejor un identificador nada mas.
   delete(toDeleteId: number): void {
     const found = this.Cards.collection.find((card) => {
       return card.id === toDeleteId;
@@ -13,7 +12,7 @@ export class DeleteCard {
       this.Cards.collection = this.Cards.collection.filter((card) => {
         return card.id !== toDeleteId;
       });
-      console.log(chalk.green("Se ha eliminado la carta " + toDeleteId)); 
+      console.log(chalk.green("Se ha eliminado la carta " + toDeleteId + " de la colección de", this.Cards.getUser())); 
     }
     else console.log(chalk.red("No se ha encontrado la carta a eliminar"));
   }

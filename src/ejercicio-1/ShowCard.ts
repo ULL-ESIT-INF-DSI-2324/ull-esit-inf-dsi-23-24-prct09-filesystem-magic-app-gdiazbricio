@@ -9,7 +9,7 @@ export class ShowCard {
       return card.id === toShowId;
     });
     if (found) {
-      console.log(found.id, found.name, found.mana, chalk.hex(Correspondencies[found.color])(Colors[found.color]), TypeLines[found.typeLine], Oddities[found.oddity], found.rules, found.strength ?? "", found.endurance ?? "", found.loyalty ?? "", found.marketValue);
+      console.log(`ID: ${found.id}, Nombre: ${found.name}, Mana: ${found.mana}, Color: ${chalk.hex(Correspondencies[found.color])(Colors[found.color])}, TypeLine: ${TypeLines[found.typeLine]}, Rareza: ${Oddities[found.oddity]}, Reglas: ${found.rules}, Fuerza: ${found.strength ?? ""}, Resistencia: ${found.endurance ?? ""}, Lealtad: ${found.loyalty ?? ""}, Valor de mercado: ${found.marketValue}`);
     }
     else console.log(chalk.red("No se ha encontrado la carta a mostrar"));
   }

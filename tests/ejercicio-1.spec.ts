@@ -4,6 +4,10 @@ import { CardCollection } from "../src/ejercicio-1/CardCollection.js"
 import { Card, Colors, TypeLines, Oddities } from "../src/ejercicio-1/Card.js";
 import { AddCard } from "../src/ejercicio-1/AddCard.js"
 import { ModifyCard } from "../src/ejercicio-1/ModifyCard.js"
+import { ListCards } from "../src/ejercicio-1/ListCards.js"
+import { ShowCard } from "../src/ejercicio-1/ShowCard.js"
+import { DeleteCard } from "../src/ejercicio-1/DeleteCard.js"
+
 
 const counterspell: Card = {
   id: 3,
@@ -44,15 +48,21 @@ describe("exercise 1 tests", () => {
     expect(myCollection.collection).to.be.deep.equal([llanowarElves]);
   });
 
-  // it("must add a card", () => {
-  //   const myAdder = new AddCard(myCollection);
-  //   myAdder.add(counterspell);
-  //   expect(myCollection.collection).to.be.deep.equal([counterspell]);
-  // });
+  it("must list all cards", () => {
+    const myLister = new ListCards(myCollection);
+    myLister.list();
+    expect(myCollection.collection).to.be.deep.equal([llanowarElves]);
+  });
 
-  // it("must add a card", () => {
-  //   const myAdder = new AddCard(myCollection);
-  //   myAdder.add(counterspell);
-  //   expect(myCollection.collection).to.be.deep.equal([counterspell]);
-  // });
+  it("must show a card", () => {
+    const myShower = new ShowCard(myCollection);
+    myShower.showCard(3);
+    expect(myCollection.collection).to.be.deep.equal([llanowarElves]);
+  });
+
+  it("must delete a card", () => {
+    const myDeleter = new DeleteCard(myCollection);
+    myDeleter.delete(3);
+    expect(myCollection.collection).to.be.deep.equal([]);
+  });
 });

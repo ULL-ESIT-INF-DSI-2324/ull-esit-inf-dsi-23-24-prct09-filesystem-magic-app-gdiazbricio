@@ -1,5 +1,4 @@
 // MEJORAR MENSAJES (PONER USUARIO DEL QUE SE ESTA HACIENDO)
-// MEJORAR LISTADOS
 
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers"

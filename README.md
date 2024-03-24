@@ -11,7 +11,7 @@
   * [Contenidos.](#contenidos)
   * [Resumen.](#resumen)
   * [Objetivos.](#objetivos)
-  * [Ejercicio propuestos en el guión:](#ejercicio-propuestos-en-el-guión)
+  * [Ejercicio propuesto en el guión:](#ejercicio-propuesto-en-el-guión)
   * [Ejercicio propuesto en el aula:](#ejericicio-propuesto-en-el-aula)
   * [Conclusiones.](#conclusiones)
   * [Bibliografía.](#bibliografía)

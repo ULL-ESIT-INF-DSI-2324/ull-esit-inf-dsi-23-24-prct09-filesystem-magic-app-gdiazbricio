@@ -1,5 +1,3 @@
-// MEJORAR MENSAJES (PONER USUARIO DEL QUE SE ESTA HACIENDO)
-
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers"
 import { Card } from "./Card.js";
@@ -12,6 +10,9 @@ import { getColorsByName, getTypeLineByName, getOddityByName } from "./helpers.j
 import { ListCards } from "./ListCards.js";
 import { readFileSync, existsSync } from 'fs';
 
+/**
+ * Main functionality for proccessing the stantard input.
+ */
 yargs(hideBin(process.argv))
   .command("add", "Adds a card to the collection", {
     user: {

@@ -1,3 +1,6 @@
+/**
+ * Enum representing different colors of cards.
+ */
 export enum Colors {
   White,
   Blue,
@@ -8,8 +11,22 @@ export enum Colors {
   Multicolor
 }
 
-export const Correspondencies = ["#ffffff", "0000ff", "000000", "ff00000", "00ff00", "ffffff", "ffffff"];
+/**
+ * Corresponding color codes for each color in the `Colors` enum.
+ */
+export const Correspondencies = [
+  "#ffffff",
+  "0000ff",
+  "000000",
+  "ff00000",
+  "00ff00",
+  "ffffff",
+  "ffffff"
+];
 
+/**
+ * Enum representing different types of card lines.
+ */
 export enum TypeLines {
   Ground,
   Creature,
@@ -20,12 +37,18 @@ export enum TypeLines {
   Planeswalker
 }
 
+/**
+ * Enum representing the rarity of a card.
+ */
 export enum Oddities {
   Common,
   Unfrecuent,
   Mithic
 }
 
+/**
+ * Interface representing a card.
+ */
 export interface Card {
   id: number,
   name: string,

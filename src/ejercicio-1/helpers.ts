@@ -1,5 +1,10 @@
 import { Colors, Oddities, TypeLines } from "./Card.js"
 
+/**
+ * Returns the enum value of `Colors` based on the provided color name.
+ * @param toSearch The color name to search for.
+ * @returns The enum value of `Colors` corresponding to the provided color name.
+ */
 export function getColorsByName(toSearch: string): Colors {
   toSearch.toLocaleLowerCase();
   switch (toSearch) {
@@ -15,6 +20,11 @@ export function getColorsByName(toSearch: string): Colors {
   }
 }
 
+/**
+ * Returns the enum value of `TypeLines` based on the provided type line name.
+ * @param toSearch The type line name to search for.
+ * @returns The enum value of `TypeLines` corresponding to the provided type line name.
+ */
 export function getTypeLineByName(toSearch: string): TypeLines {
   toSearch.toLocaleLowerCase();
   switch (toSearch) {
@@ -30,6 +40,11 @@ export function getTypeLineByName(toSearch: string): TypeLines {
   }
 }
 
+/**
+ * Returns the enum value of `Oddities` based on the provided oddity name.
+ * @param toSearch The oddity name to search for.
+ * @returns The enum value of `Oddities` corresponding to the provided oddity name.
+ */
 export function getOddityByName(toSearch: string): Oddities {
   toSearch.toLocaleLowerCase();
   switch (toSearch) {

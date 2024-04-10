@@ -89,6 +89,22 @@ describe("exercise 1 tests", () => {
     });
   });
 
+  it("read must initialize collection from a file", (done) => {
+    const myCollection = new CardCollection("Guille");
+    myCollection.write((error, data) => {
+      expect(error).to.be.equal(undefined);
+      done();
+    });
+  });
+
+  it("read mustn't intialize collection from a file", (done) => {
+    const myCollection = new CardCollection("Yo");
+    myCollection.write((error, data) => {
+      expect(data).to.be.equal(undefined);
+      done();
+    });
+  });
+
   it("write must write in a file", (done) => {
     const myCollection = new CardCollection("Guille");
     myCollection.write((_, data) => {
@@ -108,5 +124,22 @@ describe("exercise 1 tests", () => {
       done();
     });
   });
+
+  it("write must write in a file", (done) => {
+    const myCollection = new CardCollection("Guille");
+    myCollection.write((error, data) => {
+      expect(error).to.be.equal(undefined);
+      done();
+    });
+  });
+
+  it("write mustn't write in a file", (done) => {
+    const myCollection = new CardCollection("Yo");
+    myCollection.write((error, data) => {
+      expect(data).to.be.equal(undefined);
+      done();
+    });
+  });
+
 
 });

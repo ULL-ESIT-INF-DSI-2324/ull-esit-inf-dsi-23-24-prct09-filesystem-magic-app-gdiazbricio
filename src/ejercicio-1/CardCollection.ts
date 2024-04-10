@@ -1,6 +1,6 @@
 import { Card } from "./Card.js";
 // import { writeFileSync, mkdirSync, existsSync } from "fs"
-import { exists, writeFile, readFile } from "node:fs"
+import { access, writeFile, readFile, constants } from "node:fs"
 
 /**
  * Represents a collection of cards.
@@ -26,8 +26,8 @@ export class CardCollection {
   }
 
   read(callback: (error: string | undefined, data: string | undefined) => void): void {
-    exists(this.user, (exist) => {
-      if (!exist) {
+    access(this.user, constants.F_OK, (err) => {
+      if (err) {
         callback("El usuario no existe", undefined);
       }
       // If folder exists and is not a new user, we get the information.

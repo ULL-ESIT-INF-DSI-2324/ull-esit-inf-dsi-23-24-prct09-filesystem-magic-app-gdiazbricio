@@ -89,7 +89,7 @@ describe("exercise 1 tests", () => {
     });
   });
 
-  it("write must initialize collection from a file", (done) => {
+  it("write must write in a file", (done) => {
     const myCollection = new CardCollection("Guille");
     myCollection.write((_, data) => {
       if (data) {
@@ -99,7 +99,7 @@ describe("exercise 1 tests", () => {
     });
   });
 
-  it("write mustn't initialize collection from a file", (done) => {
+  it("write mustn't write in a file", (done) => {
     const myCollection = new CardCollection("Yo");
     myCollection.write((error, _) => {
       if (error) {

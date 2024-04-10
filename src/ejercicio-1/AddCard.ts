@@ -1,5 +1,6 @@
 import { CardCollection } from "./CardCollection.js";
 import { Card } from "./Card.js";
+import { access, writeFile } from "node:fs"
 import chalk from "chalk";
 
 /**
@@ -17,13 +18,27 @@ export class AddCard {
    * @param newCard The card to be added.
    */
   add(newCard: Card): void {
-    const found = this.Cards.collection.find((card) => {
-      return card.id === newCard.id;
+    // const found = this.Cards.collection.find((card) => {
+    //   return card.id === newCard.id;
+    // });
+    // if (found) {
+    //   console.log(chalk.red("Card is already added in the collection of", this.Cards.getUser()));
+    // } else {
+    //   this.Cards.collection.push(newCard);
+    //   console.log(chalk.green(`Added card ${newCard.name} to ${this.Cards.getUser()} collection`))
+    // }
+    const urlPath = `${this.Cards.getUser()}/${newCard.name}.json`;
+    const toWrite = JSON.stringify(newCard, null, 2);
+    access(urlPath, (error) => {
+      if (!error){
+        console.log(chalk.red("Card is already added in the collection of", this.Cards.getUser()));
+      } 
+      else {
+        writeFile(urlPath, toWrite, {flag: "w"}, (error) => {
+          if (error) throw(error);
+          else console.log(chalk.green(`Added card ${newCard.name} to ${this.Cards.getUser()} collection`))
+        });
+      }
     });
-    if (found) {
-      console.log(chalk.red("Card is already added in the collection of", this.Cards.getUser()));
-    } else {
-      this.Cards.collection.push(newCard);
-    }
   }
 }

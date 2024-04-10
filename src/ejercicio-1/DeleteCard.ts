@@ -20,12 +20,13 @@ export class DeleteCard {
       return card.id === toDeleteId;
     });
     if (found) {
-      this.Cards.collection = this.Cards.collection.filter((card) => {
-        return card.id !== toDeleteId;
-      });
-      console.log(chalk.green("The card " + toDeleteId + " has been deleted from the collection of", this.Cards.getUser())); 
-    } else {
-      console.log(chalk.red("The card to delete was not found"));
-    }
+    //   this.Cards.collection = this.Cards.collection.filter((card) => {
+    //     return card.id !== toDeleteId;
+    //   });
+    //   console.log(chalk.green("The card " + toDeleteId + " has been deleted from the collection of", this.Cards.getUser())); 
+    // } else {
+    //   console.log(chalk.red("The card to delete was not found"));
+    // }
+
   }
 }

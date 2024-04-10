@@ -88,10 +88,6 @@ yargs(hideBin(process.argv))
     },
   }, (argv) => {
     const myCollection = new CardCollection(argv.user);
-    if (existsSync(argv.user)) {
-      const data = readFileSync(`${argv.user}/collection.json`);
-      myCollection.collection = JSON.parse(data.toString());
-    }
     const myCard: Card = {
       id: argv.id,
       name: argv.name,
@@ -106,12 +102,11 @@ yargs(hideBin(process.argv))
     }
     const myAdder = new AddCard(myCollection);
     myAdder.add(myCard);
-    myCollection.write((error, data) => {
-      if (error) {
-        throw(error);
-      } 
-      else if (data) console.log(data);
-    });
+    // myCollection.write((error) => {
+    //   if (error) {
+    //     throw(error);
+    //   } 
+    // });
   })
   .help()
   .argv;
@@ -228,12 +223,9 @@ yargs(hideBin(process.argv))
     }
     const myModifier = new ModifyCard(myCollection);
     myModifier.modify(myCard);
-    myCollection.write((error, data) => {
-      if (error) {
-        throw(error);
-      } 
-      else if (data) console.log(data);
-    });
+    // myCollection.write((error) => {
+    //   if (error) throw(error);
+    // });
   })
   .help()
   .argv;
@@ -284,12 +276,12 @@ yargs(hideBin(process.argv))
     }
     const myRemover = new DeleteCard(myCollection);
     myRemover.delete(argv.id);
-    myCollection.write((error, data) => {
-      if (error) {
-        throw(error);
-      } 
-      else if (data) console.log(data);
-    });
+    // myCollection.write((error, data) => {
+    //   if (error) {
+    //     throw(error);
+    //   } 
+    //   else if (data) console.log(data);
+    // });
   })
   .help()
   .argv;

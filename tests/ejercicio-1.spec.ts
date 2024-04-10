@@ -39,12 +39,14 @@ describe("exercise 1 tests", () => {
   it("must add a card", () => {
     const myAdder = new AddCard(myCollection);
     myAdder.add(counterspell);
+    myCollection.write((error, data) => {});
     expect(myCollection.collection).to.be.deep.equal([counterspell]);
   });
 
   it("must modify a card", () => {
     const myModifier = new ModifyCard(myCollection);
     myModifier.modify(llanowarElves);
+    myCollection.write((error, data) => {});
     expect(myCollection.collection).to.be.deep.equal([llanowarElves]);
   });
 
@@ -63,6 +65,48 @@ describe("exercise 1 tests", () => {
   it("must delete a card", () => {
     const myDeleter = new DeleteCard(myCollection);
     myDeleter.delete(3);
+    myCollection.write((error, data) => {});
     expect(myCollection.collection).to.be.deep.equal([]);
   });
+
+  it("read must initialize collection from a file", (done) => {
+    const myCollection = new CardCollection("Guille");
+    myCollection.read((_, data) => {
+      if (data) {
+        expect(data).to.be.equal("Archivo leído correctamente");
+        done();
+      }
+    });
+  });
+
+  it("read mustn't initialize collection from a file", (done) => {
+    const myCollection = new CardCollection("Yo");
+    myCollection.read((error, _) => {
+      if (error) {
+        expect(error).to.be.equal("El usuario no existe");
+      }
+      done();
+    });
+  });
+
+  it("write must initialize collection from a file", (done) => {
+    const myCollection = new CardCollection("Guille");
+    myCollection.write((_, data) => {
+      if (data) {
+        expect(data).to.be.equal("Se escribió en el fichero");
+        done();
+      }
+    });
+  });
+
+  it("write mustn't initialize collection from a file", (done) => {
+    const myCollection = new CardCollection("Yo");
+    myCollection.write((error, _) => {
+      if (error) {
+        expect(error).to.be.equal("Error al escribir en el fichero");
+      }
+      done();
+    });
+  });
+
 });

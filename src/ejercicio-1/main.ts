@@ -106,7 +106,12 @@ yargs(hideBin(process.argv))
     }
     const myAdder = new AddCard(myCollection);
     myAdder.add(myCard);
-    myCollection.write();
+    myCollection.write((error, data) => {
+      if (error) {
+        throw(error);
+      } 
+      else if (data) console.log(data);
+    });
   })
   .help()
   .argv;
@@ -223,7 +228,12 @@ yargs(hideBin(process.argv))
     }
     const myModifier = new ModifyCard(myCollection);
     myModifier.modify(myCard);
-    myCollection.write();
+    myCollection.write((error, data) => {
+      if (error) {
+        throw(error);
+      } 
+      else if (data) console.log(data);
+    });
   })
   .help()
   .argv;
@@ -274,7 +284,12 @@ yargs(hideBin(process.argv))
     }
     const myRemover = new DeleteCard(myCollection);
     myRemover.delete(argv.id);
-    myCollection.write();
+    myCollection.write((error, data) => {
+      if (error) {
+        throw(error);
+      } 
+      else if (data) console.log(data);
+    });
   })
   .help()
   .argv;

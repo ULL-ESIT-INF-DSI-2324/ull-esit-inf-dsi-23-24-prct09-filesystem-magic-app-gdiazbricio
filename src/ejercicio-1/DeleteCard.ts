@@ -1,5 +1,7 @@
 import { CardCollection } from "./CardCollection.js";
 import chalk from "chalk";
+import { rm } from "node:fs"
+
 
 /**
  * Represents an operation to delete a card from a collection.
@@ -20,13 +22,11 @@ export class DeleteCard {
       return card.id === toDeleteId;
     });
     if (found) {
-    //   this.Cards.collection = this.Cards.collection.filter((card) => {
-    //     return card.id !== toDeleteId;
-    //   });
-    //   console.log(chalk.green("The card " + toDeleteId + " has been deleted from the collection of", this.Cards.getUser())); 
-    // } else {
-    //   console.log(chalk.red("The card to delete was not found"));
-    // }
-
+      rm(`${this.Cards.getUser()}/${found.name}.json`, (err) => {
+        if (err) throw(err);
+        else console.log(chalk.green("The card " + toDeleteId + " has been deleted from the collection of", this.Cards.getUser())); 
+      });
+    }
+    else console.log(chalk.red("The card to delete was not found"));
   }
 }

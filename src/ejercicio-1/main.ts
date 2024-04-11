@@ -8,7 +8,6 @@ import { ShowCard } from "./ShowCard.js";
 import { DeleteCard } from "./DeleteCard.js";
 import { getColorsByName, getTypeLineByName, getOddityByName } from "./helpers.js";
 import { ListCards } from "./ListCards.js";
-import { readFileSync, existsSync } from 'fs';
 
 /**
  * Main functionality for proccessing the stantard input.
@@ -100,13 +99,13 @@ yargs(hideBin(process.argv))
       endurance: argv.endurance,
       marketValue: argv.marketValue
     }
-    const myAdder = new AddCard(myCollection);
-    myAdder.add(myCard);
-    // myCollection.write((error) => {
-    //   if (error) {
-    //     throw(error);
-    //   } 
-    // });
+    myCollection.read((err) => {
+      if (err) console.log(err);
+      else {
+        const myAdder = new AddCard(myCollection);
+        myAdder.add(myCard);
+      }
+    });
   })
   .help()
   .argv;
@@ -120,12 +119,13 @@ yargs(hideBin(process.argv))
     }
   }, (argv) => {
     const myCollection = new CardCollection(argv.user);
-    if (existsSync(argv.user)) {
-      const data = readFileSync(`${argv.user}/collection.json`);
-      myCollection.collection = JSON.parse(data.toString());
-    }
-    const myLister = new ListCards(myCollection);
-    myLister.list();
+    myCollection.read((err) => {
+      if (err) throw(err);
+      else {
+        const myLister = new ListCards(myCollection);
+        myLister.list();
+      }
+    })
   })
   .help()
   .argv;
@@ -205,10 +205,6 @@ yargs(hideBin(process.argv))
     },
   }, (argv) => {
     const myCollection = new CardCollection(argv.user);
-    if (existsSync(argv.user)) {
-      const data = readFileSync(`${argv.user}/collection.json`);
-      myCollection.collection = JSON.parse(data.toString());
-    }
     const myCard: Card = {
       id: argv.id,
       name: argv.name,
@@ -221,17 +217,19 @@ yargs(hideBin(process.argv))
       endurance: argv.endurance,
       marketValue: argv.marketValue
     }
-    const myModifier = new ModifyCard(myCollection);
-    myModifier.modify(myCard);
-    // myCollection.write((error) => {
-    //   if (error) throw(error);
-    // });
+    myCollection.read((err) => {
+      if (err) throw(err);
+      else {
+        const myModifier = new ModifyCard(myCollection);
+        myModifier.modify(myCard);
+      }
+    });
   })
   .help()
   .argv;
 
 yargs(hideBin(process.argv))
-  .command("read", "List the cards of a collection", {
+  .command("read", "List a card of a collection", {
     user: {
       description: "User of the collection to show card",
       type: "string",
@@ -245,12 +243,13 @@ yargs(hideBin(process.argv))
     }
   }, (argv) => {
     const myCollection = new CardCollection(argv.user);
-    if (existsSync(argv.user)) {
-      const data = readFileSync(`${argv.user}/collection.json`);
-      myCollection.collection = JSON.parse(data.toString());
-    }
-    const myReader = new ShowCard(myCollection);
-    myReader.showCard(argv.id);
+    myCollection.read((err) => {
+      if (err) throw(err);
+      else {
+        const myReader = new ShowCard(myCollection);
+        myReader.showCard(argv.id);
+      }
+    })
   })
   .help()
   .argv;
@@ -270,18 +269,13 @@ yargs(hideBin(process.argv))
     }
   }, (argv) => {
     const myCollection = new CardCollection(argv.user);
-    if (existsSync(argv.user)) {
-      const data = readFileSync(`${argv.user}/collection.json`);
-      myCollection.collection = JSON.parse(data.toString());
-    }
-    const myRemover = new DeleteCard(myCollection);
-    myRemover.delete(argv.id);
-    // myCollection.write((error, data) => {
-    //   if (error) {
-    //     throw(error);
-    //   } 
-    //   else if (data) console.log(data);
-    // });
+    myCollection.read((err) => {
+      if (err) console.log(err);
+      else {
+        const myRemover = new DeleteCard(myCollection);
+        myRemover.delete(argv.id);
+      }
+    });
   })
   .help()
   .argv;

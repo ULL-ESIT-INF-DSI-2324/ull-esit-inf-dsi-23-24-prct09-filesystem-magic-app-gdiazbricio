@@ -17,9 +17,6 @@ export class CardCollection {
    */
   constructor(private user: string) {
     this.collection = [];
-    this.read((error) => {
-      if (error) throw(error);
-    });
   }
 
   read(callback: (error: string | undefined, data: string | undefined) => void): void {
@@ -27,29 +24,24 @@ export class CardCollection {
       if (err) {
         callback("El usuario no existe", undefined);
       }
-      // If folder exists and is not a new user, we get the information.
       else {
+        let filesRead = 0;
         readdir(this.user, (err, files) => {
           if (err) callback("No se pudo leer la carpeta del usuario", undefined);
           else {
+            if (files.length === 0) callback(undefined, "No hay ningun archivo que leer");
             files.forEach((file) => {
               readFile(`${this.user}/${file}`, (error, data) => {
                 if (error) callback(`Error al leer archivo ${file}`, undefined);
                 else {
                   this.collection.push(JSON.parse(data.toString()));
+                  filesRead++;
+                  if(filesRead === files.length) callback(undefined, "Se ha añadido a la colección")
                 }
               })
             })
           }
         })
-        // readFile(`${this.user}/collection.json`, (error, data) => {
-        //   if (error) callback("Error al leer el archivo", undefined);
-        //   if (data) {
-        //     callback(undefined, "Archivo leído correctamente");
-        //     this.collection = JSON.parse(data.toString());
-        //   }
-        // })
-
       }
     });
   }
@@ -61,15 +53,4 @@ export class CardCollection {
   getUser(): string {
     return this.user;
   }
-
-  /**
-   * Writes the collection of cards to a JSON file.
-   */
-  // write(callback: (error: string | undefined, data: string | undefined) => void): void {
-  //   const toWrite = JSON.stringify(this.collection, null, 2);
-  //   writeFile(`${this.user}/${toWrite}`, toWrite, { flag: 'w' }, (err) => {
-  //     if (err) callback("Error al escribir en el fichero", undefined);
-  //     else callback(undefined, "Se escribió en el fichero");
-  //   });
-  // }
 }
